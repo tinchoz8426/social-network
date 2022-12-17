@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+    <div class="lg:p-12 max-w-md max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
+        <h1 class="lg:text-3xl text-xl font-semibold mb-6 text-center">Consultanos</h1>
+
+        <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
+            {{contact_form}}
+            <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">Enviar</button>
+        </form>
+
+        <div class="text-center">
+            {% for message in messages %}
+                <p class="font-semibold" style="color:green; font-size:20px">{{message}}</p>
+            {% endfor %}
+        </div>
+        
+    </div>
+
+    {% else %}
+
+    <p>puto</p>
+    {% endif %}
+
+{% endblock content %}
